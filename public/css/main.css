@@ -9,6 +9,10 @@ body {
   font-size: 16px;
 }
 
+.centered {
+  text-align: center;
+}
+
 nav {
   background-color: rgb(6, 168, 114);
   padding: 0 15px;
