@@ -1,0 +1,45 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/about' ? 'active' : '' %>" href="/about">About</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/portofolio' ? 'active' : '' %>" href="/portofolio">Portofolio</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/links' ? 'active' : '' %>" href="/links">Links</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/photoproject' ? 'active' : '' %>" href="/photoproject">Photo Project
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<nav class="mobile-nav">
+        <ul class="mobile-nav__item-list">
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/about' ? 'active' : '' %>" href="/about">About</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/portofolio' ? 'active' : '' %>" href="/portofolio">Portofolio</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/links' ? 'active' : '' %>" href="/links">Links</a>
+                </li>
+                <li class="mobile-nav__item">
+                    <a class="<%= path === '/photoproject' ? 'active' : '' %>" href="/photoproject">Photo Project
+                    </a>
+                </li>
+            </ul>
+</nav>
