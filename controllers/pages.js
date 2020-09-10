@@ -4,3 +4,4 @@ exports.getIndex = (reg, res, next) => {
     path: '/home'
   });
 }
+
