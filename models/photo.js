@@ -10,7 +10,7 @@ class Photo {
 
   save() {
     const db = getDb();
-    db.collection('photos')
+    return db.collection('photos')
       .insertOne(this)
       .then((result) => {
         console.log(result);

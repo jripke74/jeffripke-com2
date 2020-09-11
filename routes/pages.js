@@ -10,6 +10,6 @@ router.get('/photo-project', pageController.getPhotoProject);
 
 router.get('/add-photo', pageController.getAddPhoto);
 
-router.post('/add-product', pageController.postAddPhoto);
+router.post('/add-photo', pageController.postAddPhoto);
 
 module.exports = router;

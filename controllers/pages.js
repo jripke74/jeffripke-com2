@@ -1,14 +1,16 @@
+const Photo = require('../models/photo');
+
 exports.getIndex = (reg, res, next) => {
   res.render('pages/index', {
     pageTitle: 'Jeff Ripke | Portfolio',
-    path: '/home'
+    path: '/home',
   });
 };
 
 exports.getPhotoProject = (reg, res, next) => {
   res.render('pages/photo-project', {
     pageTitle: 'Photo Project | Jeff A. Ripke',
-    path: '/photo-project'
+    path: '/photo-project',
   });
 };
 
@@ -25,5 +27,14 @@ exports.postAddPhoto = (req, res, next) => {
   const photoUrl = req.body.photoUrl;
   const dateTimeTaken = req.body.dateTimeTaken;
   const location = req.body.location;
-
+  const photo = new Photo(fileName, photoUrl, dateTimeTaken, location);
+  photo
+    .save()
+    .then(result => {
+      console.log('Created Photo entry');
+      res.redirect('/photo-project');
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
