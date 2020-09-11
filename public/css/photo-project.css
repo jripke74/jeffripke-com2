@@ -1,3 +1,7 @@
 .photo-links a {
   color: green;
 }
+
+img {
+  width: 25%;
+}

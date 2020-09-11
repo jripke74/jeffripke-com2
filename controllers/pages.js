@@ -2,16 +2,20 @@ const Photo = require('../models/photo');
 
 exports.getIndex = (reg, res, next) => {
   res.render('pages/index', {
-    pageTitle: 'Jeff Ripke | Portfolio',
+    pageTitle: 'Jeff A Ripke | Portfolio',
     path: '/home',
   });
 };
 
 exports.getPhotoProject = (reg, res, next) => {
-  res.render('pages/photo-project', {
-    pageTitle: 'Photo Project | Jeff A. Ripke',
-    path: '/photo-project',
-  });
+  Photo.fetchAll()
+    .then(photos => {
+      res.render('pages/photo-project', {
+        photos: photos,
+        pageTitle: 'Jeff A. Ripke | Photos',
+        path: '/photo-project',
+      });
+    })
 };
 
 exports.getAddPhoto = (req, res, next) => {
@@ -38,3 +42,5 @@ exports.postAddPhoto = (req, res, next) => {
       console.log(err);
     });
 };
+
+

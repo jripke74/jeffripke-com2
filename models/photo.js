@@ -10,10 +10,25 @@ class Photo {
 
   save() {
     const db = getDb();
-    return db.collection('photos')
+    return db
+      .collection('photos')
       .insertOne(this)
       .then((result) => {
-        console.log(result);
+        
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  static fetchAll() {
+    const db = getDb();
+    return db
+      .collection('photos')
+      .find()
+      .toArray()
+      .then(photos => {
+        return photos;
       })
       .catch((err) => {
         console.log(err);
