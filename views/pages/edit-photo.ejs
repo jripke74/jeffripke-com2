@@ -1,0 +1,32 @@
+<%- include('../includes/header.ejs') %>
+<%- include('../includes/navigation.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+</head>
+<body>
+<main>
+  <form class="product-form" action="/photo-project/<% if (editing) { %>edit-photo<% } else { %>add-photo<% } %>" method="POST">
+      <div class="form-control">
+          <label for="fileName">File Name</label>
+          <input type="text" name="fileName" id="fileName" value="<% if (editing) { %><%= photo.fileName %><% } %>">
+      </div>
+      <div class="form-control">
+          <label for="photoUrl">Photo URL</label>
+          <input type="text" name="photoUrl" id="photoUrl" value="<% if (editing) { %><%= photo.photoUrl %><% } %>">
+      </div>
+      <div class="form-control">
+          <label for="dateTimeTaken">Date Time Taken</label>
+          <input type="number" name="dateTimeTaken" id="dateTimeTaken" step="0.01" value="<% if (editing) { %><%= photo.dateTimeTaken %><% } %>">
+      </div>
+      <div class="form-control">
+          <label for="location">Location</label>
+          <textarea name="location" id="location" rows="5"><% if (editing) { %><%= photo.location %><% } %></textarea>
+      </div>
+      <% if (editing) { %>
+        <input type="hidden" value="<%= photo.id %>" name="photoId">
+      <% } %>
+
+      <button class="btn" type="submit"><% if (editing) { %>Update Photo<% } else { %>Add Photo <% } %></button>
+  </form>
+</main>
+
+<%- include('../includes/footer.ejs') %>

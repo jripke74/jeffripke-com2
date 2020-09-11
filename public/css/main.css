@@ -3,43 +3,37 @@
   padding: 0;
   margin: 0;
 }
-
 body {
   font-family: sans-serif;
   font-size: 16px;
 }
 
-.centered {
-  text-align: center;
+form {
+  display: inline;
 }
 
 nav {
-  background-color: rgb(6, 168, 114);
+  background: #222;
   padding: 0 15px;
 }
-
 a {
   color: white;
   text-decoration: none;
 }
-
-.menu {
+.menu,
+.submenu {   
   list-style-type: none;
 }
-
 .logo {
   font-size: 20px;
   padding: 7.5px 10px 7.5px 0;
 }
-
 .item {
   padding: 10px;
 }
-
 .item.button {
   padding: 9px 5px;
 }
-
 .item:not(.button) a:hover,
 .item a:hover::after {
   color: #ccc;
@@ -52,34 +46,31 @@ a {
   justify-content: space-between;
   align-items: center;
 }
-
 .menu li a {
   display: block;
   padding: 15px 5px;
 }
-
 .menu li.subitem a {
   padding: 15px;
 }
-
 .toggle {
   order: 1;
   font-size: 20px;
 }
-
 .item.button {
   order: 2;
 }
-
 .item {
   order: 3;
   width: 100%;
   text-align: center;
   display: none;
 }
-
 .active .item {
   display: block;
+}
+.button.secondary { /* divider between buttons and menu links */
+  border-bottom: 1px #444 solid;
 }
 
 @media (min-width: 700px) {

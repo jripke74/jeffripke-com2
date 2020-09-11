@@ -1,8 +1,9 @@
 const getDb = require('../utilities/database').getDb;
 
 class Photo {
-  constructor(fileName, dateTimeTaken, location) {
+  constructor(fileName, photoUrl, dateTimeTaken, location) {
     this.fileName = fileName;
+    this.photoUrl = photoUrl;
     this.dateTimeTaken = dateTimeTaken;
     this.location = location;
   }
