@@ -12,4 +12,6 @@ router.get('/add-photo', pageController.getAddPhoto);
 
 router.post('/add-photo', pageController.postAddPhoto);
 
+router.get('/photo-project/:photoId', pageController.getPhoto);
+
 module.exports = router;

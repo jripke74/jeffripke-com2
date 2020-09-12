@@ -7,6 +7,18 @@ exports.getIndex = (reg, res, next) => {
   });
 };
 
+exports.getPhoto = (req, res, next) => {
+  const photoId = req.params.photoId;
+  Photo.findById(photoId)
+    .then(photo => {
+      res.render('pages/photo-details', {
+        photo: photo,
+        pageTitle: photo.fileName,
+        path: '/photos'
+      });
+    });
+}
+
 exports.getPhotoProject = (reg, res, next) => {
   Photo.fetchAll()
     .then(photos => {

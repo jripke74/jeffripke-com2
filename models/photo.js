@@ -1,3 +1,4 @@
+const mongodb = require('mongodb');
 const getDb = require('../utilities/database').getDb;
 
 class Photo {
@@ -13,9 +14,7 @@ class Photo {
     return db
       .collection('photos')
       .insertOne(this)
-      .then((result) => {
-        
-      })
+      .then((result) => {})
       .catch((err) => {
         console.log(err);
       });
@@ -27,8 +26,23 @@ class Photo {
       .collection('photos')
       .find()
       .toArray()
-      .then(photos => {
+      .then((photos) => {
         return photos;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  static findById(photoId) {
+    const db = getDb();
+    return db
+      .collection('photos')
+      .find({ _id: new mongodb.ObjectID(photoId) })
+      .next()
+      .then(photo => {
+        console.log(photo);
+        return photo;
       })
       .catch((err) => {
         console.log(err);
