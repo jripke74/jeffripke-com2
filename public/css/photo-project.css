@@ -1,5 +1,13 @@
+.photo-links {
+  padding: 15px;
+}
+
 .photo-links a {
   color: green;
+}
+
+main {
+  padding: 2rem;
 }
 
 img {

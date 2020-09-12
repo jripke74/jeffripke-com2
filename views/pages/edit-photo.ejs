@@ -19,7 +19,7 @@
       </div>
       <div class="form-control">
           <label for="location">Location</label>
-          <textarea name="location" id="location" rows="5"><% if (editing) { %><%= photo.location %><% } %></textarea>
+          <input type="text" name="location" id="location" value="<% if (editing) { %><%= photo.location %><% } %>">
       </div>
       <% if (editing) { %>
         <input type="hidden" value="<%= photo.id %>" name="photoId">
