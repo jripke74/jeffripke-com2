@@ -11,7 +11,7 @@ exports.getPhoto = (req, res, next) => {
   const photoId = req.params.photoId;
   Photo.findById(photoId)
     .then(photo => {
-      res.render('pages/photo-details', {
+      res.render('photo-project/main/photo-details', {
         photo: photo,
         pageTitle: photo.fileName,
         path: '/photos'
@@ -19,10 +19,21 @@ exports.getPhoto = (req, res, next) => {
     });
 }
 
-exports.getPhotoProject = (reg, res, next) => {
+exports.getPhotos = (reg, res, next) => {
   Photo.fetchAll()
     .then(photos => {
-      res.render('pages/photo-project', {
+      res.render('photo-project/main/photos', {
+        photos: photos,
+        pageTitle: 'Jeff A. Ripke | Photos',
+        path: '/photo-project',
+      });
+    })
+};
+
+exports.getAdminPhotos = (reg, res, next) => {
+  Photo.fetchAll()
+    .then(photos => {
+      res.render('photo-project/admin/photos', {
         photos: photos,
         pageTitle: 'Jeff A. Ripke | Photos',
         path: '/photo-project',
@@ -31,7 +42,7 @@ exports.getPhotoProject = (reg, res, next) => {
 };
 
 exports.getAddPhoto = (req, res, next) => {
-  res.render('pages/edit-photo', {
+  res.render('photo-project/admin/edit-photo', {
     pageTitle: 'Add Photo',
     path: '/pages/add-photo',
     editing: false
@@ -48,7 +59,7 @@ exports.postAddPhoto = (req, res, next) => {
     .save()
     .then(result => {
       console.log('Created Photo entry');
-      res.redirect('/photo-project');
+      res.redirect('photo-project/main/photos');
     })
     .catch(err => {
       console.log(err);

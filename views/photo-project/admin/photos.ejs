@@ -1,0 +1,42 @@
+<%- include('../../includes/header.ejs') %>
+<%- include('../../includes/navigation.ejs') %>
+<link rel="stylesheet" href="/css/photo-project.css">
+</head>
+<body>
+  <main>
+    <div class="photo-links">
+        <a href="../photo-base/add-photo">Add Photo</a>
+        <a href="../photo-base/admin">Admin</a>
+    </div>
+    <% if (photos.length > 0) { %>
+        <div class="grid">
+            <% for (let photo of photos) { %>
+                <article class="card product-item">
+                    <header class="card__header">
+                        <h1 class="product__title"><%= photo.fileName %></h1>
+                    </header>
+                    <div class="card__image">
+                        <img src="<%= photo.photoUrl %>"
+                            alt="<%= photo.fileName %>">
+                    </div>
+                    <div class="card__content">
+                        <h2 class="product__price"><%= photo.dateTimeTaken %></h2>
+                        <p class="product__description"><%= photo.location %></p>
+                    </div>
+                    <a href="/admin/edit-photo/<%= photo._id %>?edit=true" class="btn">Edit</a>
+                    <form action="/admin/delete-photo" method="POST">
+                        <input type="hidden" value="<%= photo._id %>" name="photoId">
+                        <button class="btn" type="submit">Delete</button>
+                    </form>
+
+                </article>
+            <% } %>
+        </div>
+    <% } else { %>
+        <h1>No Products Found!</h1>
+    <% } %>
+</main>
+
+<!-- <img src=" https://dl.dropboxusercontent.com/ alt=""> -->
+
+<%- include('../../includes/footer.ejs') %>

@@ -1,13 +1,13 @@
-<%- include('../includes/header.ejs') %>
-<%- include('../includes/navigation.ejs') %>
+<%- include('../../includes/header.ejs') %>
+<%- include('../../includes/navigation.ejs') %>
 <link rel="stylesheet" href="/css/photo-project.css">
 </head>
 <body>
-<main>
-  <div class="photo-links">
-    <a href="add-photo">Add Photo</a>
-  </div>
   <main>
+    <div class="photo-links">
+        <a href="../photo-base/add-photo">Add Photo</a>
+        <a href="/photo-base/admin/photos">Admin</a>
+    </div>
     <% if (photos.length > 0) { %>
         <div class="grid">
             <% for (let photo of photos) { %>
@@ -24,7 +24,11 @@
                         <p class="product__description"><%= photo.location %></p>
                     </div>
                     <div class="card__actions">
-                        <a href="/photo-project/<%= photo._id %>" class="btn">Details</a>
+                        <a href="photo-base/<%= photo._id %>" class="btn">Details</a>
+                        <form action="/list" method="POST">
+                            <button class="btn" type="submit">Add to List</button>
+                            <input type="hidden" name="photoId" value="<%= photo._id %>">
+                          </form>
                     </div>
                 </article>
             <% } %>
@@ -33,11 +37,7 @@
         <h1>No Products Found!</h1>
     <% } %>
 </main>
-</main>
-
-
-
 
 <!-- <img src=" https://dl.dropboxusercontent.com/ alt=""> -->
 
-<%- include('../includes/footer.ejs') %>
+<%- include('../../includes/footer.ejs') %>

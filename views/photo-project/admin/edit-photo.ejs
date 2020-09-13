@@ -1,5 +1,5 @@
-<%- include('../includes/header.ejs') %>
-<%- include('../includes/navigation.ejs') %>
+<%- include('../../includes/header.ejs') %>
+<%- include('../../includes/navigation.ejs') %>
 <link rel="stylesheet" href="/css/forms.css">
 </head>
 <body>
@@ -22,11 +22,11 @@
           <input type="text" name="location" id="location" value="<% if (editing) { %><%= photo.location %><% } %>">
       </div>
       <% if (editing) { %>
-        <input type="hidden" value="<%= photo.id %>" name="photoId">
+        <input type="hidden" value="<%= photo._id %>" name="photoId">
       <% } %>
 
       <button class="btn" type="submit"><% if (editing) { %>Update Photo<% } else { %>Add Photo <% } %></button>
   </form>
 </main>
 
-<%- include('../includes/footer.ejs') %>
+<%- include('../../includes/footer.ejs') %>
