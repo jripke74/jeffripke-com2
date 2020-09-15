@@ -4,7 +4,7 @@
 </head>
 <body>
 <main>
-  <form class="product-form" action="/<% if (editing) { %>edit-photo<% } else { %>add-photo<% } %>" method="POST">
+  <form class="product-form" action="/photo-base/admin/<% if (editing) { %>edit-photo<% } else { %>add-photo<% } %>" method="POST">
       <div class="form-control">
           <label for="fileName">File Name</label>
           <input type="text" name="fileName" id="fileName" value="<% if (editing) { %><%= photo.fileName %><% } %>">
