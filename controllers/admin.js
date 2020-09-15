@@ -1,33 +1,34 @@
+const mongodb = require('mongodb');
 const Photo = require('../models/photo');
 
+const ObjectId = mongodb.ObjectID;
+
 exports.getAdminPhotos = (reg, res, next) => {
-  Photo.fetchAll()
-    .then(photos => {
-      res.render('photo-project/admin/photos', {
-        photos: photos,
-        pageTitle: 'Jeff A. Ripke | Photos',
-        path: '/photo-project',
-      });
-    })
+  Photo.fetchAll().then((photos) => {
+    res.render('photo-project/admin/photos', {
+      photos: photos,
+      pageTitle: 'Jeff A. Ripke | Photos',
+      path: '/photo-project',
+    });
+  });
 };
 
 exports.getAdminPhoto = (req, res, next) => {
   const photoId = req.params.photoId;
-  Photo.findById(photoId)
-    .then(photo => {
-      res.render('photo-project/main/photo-details', {
-        photo: photo,
-        pageTitle: photo.fileName,
-        path: '/photos'
-      });
+  Photo.findById(photoId).then((photo) => {
+    res.render('photo-project/main/photo-details', {
+      photo: photo,
+      pageTitle: photo.fileName,
+      path: '/photos',
     });
-}
+  });
+};
 
 exports.getAddPhoto = (req, res, next) => {
   res.render('photo-project/admin/edit-photo', {
     pageTitle: 'Add Photo',
     path: '/pages/add-photo',
-    editing: false
+    editing: false,
   });
 };
 
@@ -39,11 +40,11 @@ exports.postAddPhoto = (req, res, next) => {
   const photo = new Photo(fileName, photoUrl, dateTimeTaken, location);
   photo
     .save()
-    .then(result => {
+    .then((result) => {
       console.log('Created Photo entry');
-      res.redirect('photo-project/main/photos');
+      res.redirect('photos');
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
@@ -55,7 +56,7 @@ exports.getEditPhoto = (req, res, next) => {
   }
   const photoId = req.params.photoId;
   Photo.findById(photoId)
-    .then(photo => {
+    .then((photo) => {
       if (!photo) {
         return res.redirect('/');
       }
@@ -63,29 +64,30 @@ exports.getEditPhoto = (req, res, next) => {
         pageTitle: 'Edit Photo',
         path: '/admin/edit-product',
         editing: editMode,
-        photo: photo
+        photo: photo,
       });
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };
 
-exports.postEditProduct = (req, res, next) => {
+exports.postEditPhoto = (req, res, next) => {
   const photoId = req.body.photoId;
   const updatedFileName = req.body.fileName;
   const updatedPhotoUrl = req.body.photoUrl;
   const updatedDateTimeTaken = req.body.dateTimeTaken;
   const updatedLocation = req.body.location;
-  Photo.findById(photoId)
-    .then(photo => {
-      photo.fileName = updatedFileName;
-      photo.photoUrl = updatedPhotoUrl;
-      photo.dateTimeTaken = updatedDateTimeTaken;
-      photo.location = updatedLocation;
-      return photo.save();
+  const photo = new Photo(
+    updatedFileName,
+    updatedPhotoUrl,
+    updatedDateTimeTaken,
+    updatedLocation,
+    new ObjectId(photoId)
+  );
+  photo
+    .save()
+    .then((result) => {
+      console.log('UPDATED PHOTO!');
+      res.redirect('photos');
     })
-    .then(result => {
-      console.location('UPDATED PHOTO!');
-      res.redirect('photo-project/admin/photos');
-    })
-    .catch(err => console.log(err));
-}
+    .catch((err) => console.log(err));
+};

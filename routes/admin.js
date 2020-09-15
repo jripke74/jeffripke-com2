@@ -4,16 +4,16 @@ const pageController = require('../controllers/admin');
 
 const router = express.Router();
 
-router.get('/photo-base/admin/photos', pageController.getAdminPhotos);
+router.get('/add-photo', pageController.getAddPhoto);
 
-router.get('/photo-base/add-photo', pageController.getAddPhoto);
-
-router.get('/photo-base/:photoId', pageController.getAdminPhoto);
+router.get('/photos', pageController.getAdminPhotos);
 
 router.post('/add-photo', pageController.postAddPhoto);
 
-router.get('/photo-base/admin/edit-photo/:photoId', pageController.getEditPhoto);
+router.get('/:photoId', pageController.getAdminPhoto);
 
-router.post('/edit-product', pageController.postEditProduct);
+router.get('/edit-photo/:photoId', pageController.getEditPhoto);
+
+router.post('/edit-photo', pageController.postEditPhoto);
 
 module.exports = router;

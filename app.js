@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', pageRoutes);
-app.use('/', adminRoutes);
+app.use('/photo-base/admin', adminRoutes);
 
 app.use(errorController.get404);
 

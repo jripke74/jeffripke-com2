@@ -19,11 +19,9 @@ class Photo {
         .collection('photos')
         .updateOne({ _id: new mongodb.ObjectID(this._id) }, { $set: this });
     } else {
-      dbOp = db.collection('products').insertOne(this);
+      dbOp = db.collection('photos').insertOne(this);
     }
     return dbOp
-      .collection('photos')
-      .insertOne(this)
       .then((result) => {
         console.log(result);
       })
