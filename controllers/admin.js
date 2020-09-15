@@ -34,7 +34,14 @@ exports.postAddPhoto = (req, res, next) => {
   const photoUrl = req.body.photoUrl;
   const dateTimeTaken = req.body.dateTimeTaken;
   const location = req.body.location;
-  const photo = new Photo(fileName, photoUrl, dateTimeTaken, location);
+  const photo = new Photo(
+    fileName,
+    photoUrl,
+    dateTimeTaken,
+    location,
+    null,
+    req.user._id
+  );
   photo
     .save()
     .then((result) => {
@@ -96,5 +103,5 @@ exports.postDeletePhoto = (req, res, next) => {
       console.log('DESTROYED PHOTO');
       res.redirect('photos');
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
 };

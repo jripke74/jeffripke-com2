@@ -2,12 +2,13 @@ const mongodb = require('mongodb');
 const getDb = require('../utilities/database').getDb;
 
 class Photo {
-  constructor(fileName, photoUrl, dateTimeTaken, location, id) {
+  constructor(fileName, photoUrl, dateTimeTaken, location, id, userId) {
     this.fileName = fileName;
     this.photoUrl = photoUrl;
     this.dateTimeTaken = dateTimeTaken;
     this.location = location;
     this._id = id ? new mongodb.ObjectID(id) : null;
+    this.userId = userId;
   }
 
   save() {
