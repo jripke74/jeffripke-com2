@@ -50,9 +50,22 @@ class Photo {
       .collection('photos')
       .find({ _id: new mongodb.ObjectID(photoId) })
       .next()
-      .then(photo => {
+      .then((photo) => {
         console.log(photo);
         return photo;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  static deleteById(photoId) {
+    const db = getDb();
+    return db
+      .collection('photos')
+      .deleteOne({ _id: new mongodb.ObjectID(photoId) })
+      .then(result => {
+        console.log('Deleted!')
       })
       .catch((err) => {
         console.log(err);

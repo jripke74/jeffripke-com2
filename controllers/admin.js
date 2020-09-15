@@ -88,3 +88,13 @@ exports.postEditPhoto = (req, res, next) => {
     })
     .catch((err) => console.log(err));
 };
+
+exports.postDeletePhoto = (req, res, next) => {
+  const photoId = req.body.photoId;
+  Photo.deleteById(photoId)
+    .then(() => {
+      console.log('DESTROYED PHOTO');
+      res.redirect('photos');
+    })
+    .catch(err => console.log(err));
+};
