@@ -1,7 +1,4 @@
-const mongodb = require('mongodb');
 const Photo = require('../models/photo');
-
-const ObjectId = mongodb.ObjectID;
 
 exports.getAdminPhotos = (reg, res, next) => {
   Photo.fetchAll().then((photos) => {
@@ -81,7 +78,7 @@ exports.postEditPhoto = (req, res, next) => {
     updatedPhotoUrl,
     updatedDateTimeTaken,
     updatedLocation,
-    new ObjectId(photoId)
+    photoId
   );
   photo
     .save()

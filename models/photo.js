@@ -7,7 +7,7 @@ class Photo {
     this.photoUrl = photoUrl;
     this.dateTimeTaken = dateTimeTaken;
     this.location = location;
-    this._id = id;
+    this._id = new mongodb.ObjectID(id);
   }
 
   save() {
@@ -17,7 +17,7 @@ class Photo {
       // Update the photo
       dbOp = db
         .collection('photos')
-        .updateOne({ _id: new mongodb.ObjectID(this._id) }, { $set: this });
+        .updateOne({ _id: this._id }, { $set: this });
     } else {
       dbOp = db.collection('photos').insertOne(this);
     }
