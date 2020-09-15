@@ -7,7 +7,7 @@ class Photo {
     this.photoUrl = photoUrl;
     this.dateTimeTaken = dateTimeTaken;
     this.location = location;
-    this._id = new mongodb.ObjectID(id);
+    this._id = id ? new mongodb.ObjectID(id) : null;
   }
 
   save() {
