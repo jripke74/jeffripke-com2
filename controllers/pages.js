@@ -29,3 +29,14 @@ exports.getPhotos = (reg, res, next) => {
       });
     })
 };
+
+exports.postList = (req, res, next) => {
+  const photoId = req.body.photoId;
+  Photo.findById(photoId)
+    .then(photo => {
+      return req.user.addToList(photo);
+    })
+    .then(result => {
+      console.log(result);
+    })
+}

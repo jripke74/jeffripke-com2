@@ -21,17 +21,21 @@ class User {
     // const listPhoto = this.list.photos.findIndex(lp => {
     //   return lp._id === photo._id;
     // });
-    const updatedList = { items: [{ ...photo }]};
+    const updatedList = { 
+      photos: [{ photoId: new ObjectId(photo._id) }]
+    };
     const db = getDb();
-    return db.collection('users').updateOne(
-      { _id: new ObjectId(this._id) },
-      { $set: { cart: updatedList } }
-    );
+    return db
+      .collection('users')
+      .updateOne(
+        { _id: new ObjectId(this._id) },
+        { $set: { list: updatedList } }
+      );
   }
 
   static findById(userId) {
     const db = getDb();
-    return db.collection('users').findOne( {_id: new ObjectId(userId)} );
+    return db.collection('users').findOne({ _id: new ObjectId(userId) });
   }
 }
 

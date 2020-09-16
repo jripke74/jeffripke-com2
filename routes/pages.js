@@ -8,4 +8,8 @@ router.get('/', pageController.getIndex);
 
 router.get('/photo-base', pageController.getPhotos);
 
+router.get('/photo-base/:photoId', pageController.getPhoto);
+
+router.post('/list', pageController.postList);
+
 module.exports = router;

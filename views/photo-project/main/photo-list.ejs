@@ -1,0 +1,33 @@
+<%- include('../../includes/header.ejs') %>
+<link rel="stylesheet" href="/css/photo-project.css">
+    </head>
+
+    <body>
+        <%- include('../../includes/navigation.ejs') %>
+        <div class="photo-links">
+            <a href="/photo-base">Back to All Photos</a>
+        </div>
+        <main class="centered">
+          <% if (photo.length > 0) { %>
+            <ul class="cart__item-list">
+                <% photo.forEach(p => { %>
+                    <li class="cart__item">
+                        <h1><%= p.title %></h1>
+                        <form action="/cart-delete-item" method="POST">
+                            <input type="hidden" value="<%= p._id %>" name="photoId">
+                            <button class="btn danger" type="submit">Delete</button>
+                        </form>
+                    </li>
+                <% }); %>
+            </ul>
+            <hr>
+            <div class="centered">
+                <form action="/create-order" method="POST">
+                    <button type="submit" class="btn">Order Now!</button>
+                </form>
+            </div>
+        <% } else { %>
+            <h1>No Photos!</h1>
+        <% } %>
+        </main>
+<%- include('../../includes/footer.ejs') %>
