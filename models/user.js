@@ -1,5 +1,4 @@
 const mongodb = require('mongodb');
-const { findById } = require('./photo');
 const getDb = require('../utilities/database').getDb;
 
 const ObjectId = mongodb.ObjectID;
@@ -18,10 +17,10 @@ class User {
   }
 
   addToList(photo) {
-    // const listPhoto = this.list.photos.findIndex(lp => {
-    //   return lp._id === photo._id;
-    // });
-    const updatedList = { 
+    const listPhotoIndex = this.list.items.findIndex(pl => {
+      return pl;
+    });
+    const updatedList = {
       photos: [{ photoId: new ObjectId(photo._id) }]
     };
     const db = getDb();
