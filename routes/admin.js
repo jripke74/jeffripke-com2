@@ -10,7 +10,7 @@ router.get('/photos', pageController.getAdminPhotos);
 
 router.post('/add-photo', pageController.postAddPhoto);
 
-// router.get('/:photoId', pageController.getAdminPhoto);
+router.get('/:photoId', pageController.getAdminPhoto);
 
 // router.get('/edit-photo/:photoId', pageController.getEditPhoto);
 
