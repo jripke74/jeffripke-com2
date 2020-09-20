@@ -96,7 +96,7 @@ exports.postEditPhoto = (req, res, next) => {
 
 exports.postDeletePhoto = (req, res, next) => {
   const photoId = req.body.photoId;
-  Photo.deleteById(photoId)
+  Photo.findByIdAndRemove(photoId)
     .then(() => {
       console.log('DESTROYED PHOTO');
       res.redirect('photos');

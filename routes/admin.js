@@ -16,6 +16,6 @@ router.get('/edit-photo/:photoId', pageController.getEditPhoto);
 
 router.post('/edit-photo', pageController.postEditPhoto);
 
-// router.post('/delete-photo', pageController.postDeletePhoto);
+router.post('/delete-photo', pageController.postDeletePhoto);
 
 module.exports = router;
