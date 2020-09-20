@@ -1,3 +1,4 @@
+const photo = require('../models/photo');
 const Photo = require('../models/photo');
 
 exports.getAdminPhotos = (reg, res, next) => {
@@ -78,15 +79,14 @@ exports.postEditPhoto = (req, res, next) => {
   const updatedPhotoUrl = req.body.photoUrl;
   const updatedDateTimeTaken = req.body.dateTimeTaken;
   const updatedLocation = req.body.location;
-  const photo = new Photo(
-    updatedFileName,
-    updatedPhotoUrl,
-    updatedDateTimeTaken,
-    updatedLocation,
-    photoId
-  );
-  photo
-    .save()
+  Photo.findById(photoId)
+    .then(photo => {
+      photo.fileName = updatedFileName;
+      photo.photoUrl = updatedPhotoUrl;
+      photo.dateTimeTaken = updatedDateTimeTaken;
+      photo.location = updatedLocation;
+      return photo.save();
+    })
     .then((result) => {
       console.log('UPDATED PHOTO!');
       res.redirect('photos');
