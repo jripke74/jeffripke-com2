@@ -20,7 +20,7 @@ exports.getPhoto = (req, res, next) => {
 }
 
 exports.getPhotos = (reg, res, next) => {
-  Photo.fetchAll()
+  Photo.find()
     .then(photos => {
       res.render('photo-project/main/photos', {
         photos: photos,

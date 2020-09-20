@@ -1,3 +1,28 @@
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
+
+const photoSchema = new Schema({
+  fileName: {
+    type: String,
+    required: true
+  },
+  photoUrl: {
+    type: String,
+    required: true
+  },
+  dateTimeTaken: {
+    type: String,
+    required: true
+  },
+  location: {
+    type: String,
+    reuired: false
+  }
+});
+
+module.exports = mongoose.model('Photo', photoSchema);
+
 // const mongodb = require('mongodb');
 // const getDb = require('../utilities/database').getDb;
 

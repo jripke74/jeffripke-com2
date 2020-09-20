@@ -1,7 +1,7 @@
 const Photo = require('../models/photo');
 
 exports.getAdminPhotos = (reg, res, next) => {
-  Photo.fetchAll().then((photos) => {
+  Photo.find().then((photos) => {
     res.render('photo-project/admin/photos', {
       photos: photos,
       pageTitle: 'Jeff A. Ripke | Photos',
@@ -34,14 +34,12 @@ exports.postAddPhoto = (req, res, next) => {
   const photoUrl = req.body.photoUrl;
   const dateTimeTaken = req.body.dateTimeTaken;
   const location = req.body.location;
-  const photo = new Photo(
-    fileName,
-    photoUrl,
-    dateTimeTaken,
-    location,
-    null,
-    req.user._id
-  );
+  const photo = new Photo({
+    fileName: fileName,
+    photoUrl: photoUrl,
+    dateTimeTaken: dateTimeTaken,
+    location: location,
+  });
   photo
     .save()
     .then((result) => {
