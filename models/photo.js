@@ -18,6 +18,11 @@ const photoSchema = new Schema({
   location: {
     type: String,
     reuired: false
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 });
 

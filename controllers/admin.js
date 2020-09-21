@@ -40,6 +40,7 @@ exports.postAddPhoto = (req, res, next) => {
     photoUrl: photoUrl,
     dateTimeTaken: dateTimeTaken,
     location: location,
+    userId: req.user
   });
   photo
     .save()

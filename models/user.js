@@ -14,7 +14,7 @@ const userSchema = new Schema({
   list: {
     photos: [
       {
-        photoId: { type: Schema.Types.ObjectId, required: true}
+        photoId: { type: Schema.Types.ObjectId, ref: 'Photo', required: true}
       }
     ]
   }
